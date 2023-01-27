@@ -117,28 +117,24 @@ export default class Sketch {
 
     // load font -- three font
     const ttfLoader = new TTFLoader();
+    ttfLoader.load('src/fonts/Mont-Regular.ttf', (json) => {
+      const font = new FontLoader(json);
 
-    ttfLoader.load(
-      'three/examples/fonts/helvetiker_regular.typeface.json ',
-      (json) => {
-        const font = new FontLoader(json);
+      this.textGeo = new TextGeometry('yeah', {
+        font: font,
+        size: 200,
+        height: 50,
+        curveSegments: 12,
+      });
 
-        this.textGeo = new TextGeometry('yeah', {
-          font: font,
-          size: 200,
-          height: 50,
-          curveSegments: 12,
-        });
+      this.textMaterial = new THREE.MeshPhongMaterial({
+        color: 0xff0000,
+        side: THREE.DoubleSide,
+      });
 
-        this.textMaterial = new THREE.MeshPhongMaterial({
-          color: 0xff0000,
-          side: THREE.DoubleSide,
-        });
-
-        this.textMesh = new THREE.Mesh(this.textGeo, this.textMaterial);
-        this.textMesh.position.set(0, 0, 0);
-      },
-    );
+      this.textMesh = new THREE.Mesh(this.textGeo, this.textMaterial);
+      this.textMesh.position.set(0, 0, 0);
+    });
 
     // load font -- three font
 

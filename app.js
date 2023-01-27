@@ -39,23 +39,23 @@ export default class Sketch {
     this.container.appendChild(this.renderer.domElement);
 
     //// --> 2. Important element - camera
-    const fov = 75;
-    const aspect = this.width / this.eight; // the canvas default
-    const near = 0.1;
-    const far = 5;
-    this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    // const fov = 75;
+    // const aspect = this.width / this.eight; // the canvas default
+    // const near = 0.1;
+    // const far = 5;
+    // this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
     // orthographic camera
-    // this.frustumSize = 1;
-    // this.aspect = window.offsetWidth / window.offsetHeight;
-    // this.camera = new THREE.OrthographicCamera(
-    //   this.frustumSize / -2,
-    //   this.frustumSize / 2,
-    //   this.frustumSize / 2,
-    //   this.frustumSize / -2,
-    //   -1000,
-    //   1000,
-    // );
+    this.frustumSize = 1;
+    this.aspect = window.offsetWidth / window.offsetHeight;
+    this.camera = new THREE.OrthographicCamera(
+      this.frustumSize / -2,
+      this.frustumSize / 2,
+      this.frustumSize / 2,
+      this.frustumSize / -2,
+      -1000,
+      1000,
+    );
 
     this.camera.position.set(0, 0, 2);
 
@@ -118,24 +118,27 @@ export default class Sketch {
     // load font -- three font
     const ttfLoader = new TTFLoader();
 
-    ttfLoader.load('fonts/Amalfi-Coast.ttf', (json) => {
-      const font = new FontLoader(json);
+    ttfLoader.load(
+      'three/examples/fonts/helvetiker_regular.typeface.json ',
+      (json) => {
+        const font = new FontLoader(json);
 
-      this.textGeo = new TextGeometry('yeah', {
-        font: font,
-        size: 200,
-        height: 50,
-        curveSegments: 12,
-      });
+        this.textGeo = new TextGeometry('yeah', {
+          font: font,
+          size: 200,
+          height: 50,
+          curveSegments: 12,
+        });
 
-      this.textMaterial = new THREE.MeshPhongMaterial({
-        color: 0xff0000,
-        side: THREE.DoubleSide,
-      });
+        this.textMaterial = new THREE.MeshPhongMaterial({
+          color: 0xff0000,
+          side: THREE.DoubleSide,
+        });
 
-      this.textMesh = new THREE.Mesh(this.textGeo, this.textMaterial);
-      this.textMesh.position.set(0, 0, 0);
-    });
+        this.textMesh = new THREE.Mesh(this.textGeo, this.textMaterial);
+        this.textMesh.position.set(0, 0, 0);
+      },
+    );
 
     // load font -- three font
 
@@ -145,7 +148,7 @@ export default class Sketch {
     this.myText.text = 'Hello world!';
     this.myText.fontSize = 0.2;
     this.myText.position.x = -0.5;
-    this.myText.position.y = 1;
+    this.myText.position.y = 0;
     this.myText.position.z = 0.5;
     this.myText.color = 0x1976ff;
     this.myText.dispose();

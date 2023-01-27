@@ -142,18 +142,6 @@ export default class Sketch {
 
     // load font -- three font
 
-    // load font - troika
-    this.myText = new Text();
-
-    this.myText.text = 'Hello world!';
-    this.myText.fontSize = 0.2;
-    this.myText.position.x = -0.5;
-    this.myText.position.y = 0;
-    this.myText.position.z = 0.5;
-    this.myText.color = 0x1976ff;
-    this.myText.dispose();
-    // load font - troika
-
     //// material
     this.material = new THREE.ShaderMaterial({
       extensions: {
@@ -188,8 +176,7 @@ export default class Sketch {
     this.plane = new THREE.Mesh(this.geometry1, this.material);
     // this.plane.position.x = 0.5;
     this.scene.add(this.plane, this.light);
-    // this.scene.add(this.textMesh);
-    this.scene.add(this.myText);
+    this.scene.add(this.textMesh);
   }
 
   // tabEvents() {
@@ -218,7 +205,6 @@ export default class Sketch {
     // this.mesh.rotation.y += 0.02;
     // this.mesh.rotation.z += (Math.sin(0.5)*00)*0.01;
     // Update the rendering:
-    this.myText.sync();
     this.material.uniforms.time.value = this.time;
     this.material.uniforms.progress.value = this.settings.progress;
     window.requestAnimationFrame(this.render.bind(this));

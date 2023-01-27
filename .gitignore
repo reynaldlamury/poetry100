@@ -1,0 +1,19 @@
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+dist
+
+# vscode 
+.vscode
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# eslint
+.eslintrc.json
+
+# note
+note.txt
+
+dark_vs.json

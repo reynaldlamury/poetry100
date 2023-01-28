@@ -1,7 +1,7 @@
 # poetry100
 Three project
 
-# Install dependencies
+## nstall dependencies
 ```
 npm install
 ```

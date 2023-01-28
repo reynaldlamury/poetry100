@@ -117,7 +117,7 @@ export default class Sketch {
 
     // load font -- three font
     const ttfLoader = new TTFLoader();
-    ttfLoader.load('src/fonts/Mont-Regular.ttf', (json) => {
+    ttfLoader.load('fonts/Mont-Regular.ttf', (json) => {
       const font = new FontLoader(json);
 
       this.textGeo = new TextGeometry('yeah', {

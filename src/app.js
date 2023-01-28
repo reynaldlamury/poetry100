@@ -117,23 +117,27 @@ export default class Sketch {
 
     // load font -- three font
     const ttfLoader = new TTFLoader();
-    ttfLoader.load('fonts/Mont-Regular.ttf', (json) => {
-      const font = new FontLoader(json);
+    const fontLoader = new FontLoader();
 
-      this.textGeo = new TextGeometry('yeah', {
-        font: font,
-        size: 200,
-        height: 50,
-        curveSegments: 12,
+    ttfLoader.load('src/fonts/Mont-Regular.ttf', (json) => {
+      const MontFont = fontLoader.parse(json);
+
+      this.textGeo = new TextGeometry('Yeah', {
+        font: MontFont,
+        size: 0.2,
+        height: 0,
+        // curveSegments: 12,
       });
 
-      this.textMaterial = new THREE.MeshPhongMaterial({
-        color: 0xff0000,
-        side: THREE.DoubleSide,
-      });
+      // this.textMaterial = new THREE.MeshPhongMaterial({
+      //   color: 0xff0000,
+      //   side: THREE.DoubleSide,
+      // });
 
+      this.textMaterial = new THREE.MeshNormalMaterial();
       this.textMesh = new THREE.Mesh(this.textGeo, this.textMaterial);
-      this.textMesh.position.set(0, 0, 0);
+      this.textMesh.position.set(-0.5, 0.5, 0);
+      this.scene.add(this.textMesh);
     });
 
     // load font -- three font
@@ -172,7 +176,6 @@ export default class Sketch {
     this.plane = new THREE.Mesh(this.geometry1, this.material);
     // this.plane.position.x = 0.5;
     this.scene.add(this.plane, this.light);
-    this.scene.add(this.textMesh);
   }
 
   // tabEvents() {
